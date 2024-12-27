@@ -46,8 +46,6 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
-        OPENAI_API_KEY: ${{ inputs.llm-provider == 'openai' && inputs.llm-key || '' }}
-        ANTHROPIC_API_KEY: ${{ inputs.llm-provider == 'anthropic' && inputs.llm-key || '' }}
       run: |
         relgen remote pr describe "${{ github.event.pull_request.html_url }}" --provider ${{ inputs.llm-provider }} --model ${{ inputs.llm-model }} \
           --write comment \
@@ -60,7 +58,6 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
-        OPENAI_API_KEY: ${{ inputs.openai-key }}
       run: |
-        relgen remote pr label "${{ github.event.pull_request.html_url }}" --llm.provider ${{ inputs.llm-provider }} --llm.model ${{ inputs.llm-model }} \
-          --write ${{ inputs.label-mode }}
+        relgen remote pr label "${{ github.event.pull_request.html_url }}" --provider ${{ inputs.llm-provider }} --model ${{ inputs.llm-model }} \
+          --write ${{ inputs.label-mode }} --llm-token ${{ inputs.llm-key }}
