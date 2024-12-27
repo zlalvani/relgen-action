@@ -1,4 +1,4 @@
-name: 'Relgen'
+name: 'Relgen Action'
 description: 'AI-powered PR descriptions and labels using relgen'
 branding:
   icon: 'edit'
