@@ -37,20 +37,9 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: actions/checkout@v4
-    
-    - uses: pnpm/action-setup@v4
-      with:
-        version: 8
-    
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'pnpm'
-        
     - name: Install relgen
       shell: bash
-      run: pnpm add -g relgen
+      run: npm install -g relgen
       
     - name: Generate PR description
       if: inputs.skip-description != 'true'
