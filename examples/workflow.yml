@@ -1,4 +1,4 @@
-name: PR Assistant
+name: Relgen
 on:
   pull_request:
     types: [opened, synchronize, reopened]
