@@ -48,6 +48,7 @@ jobs:
 | `label-mode` | How to write labels (`add` or `set`) | No | `add` |
 | `disable-description` | Disable generating PR description | No | `false` |
 | `disable-labels` | Disable generating PR labels | No | `false` |
+| `footer` | Footer text used to identify and update relgen comments (should not be empty) | No | Default footer with link to action |
 
 ## Customization
 
