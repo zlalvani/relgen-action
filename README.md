@@ -48,7 +48,7 @@ jobs:
 | `label-mode` | How to write labels (`add` or `set`) | No | `add` |
 | `disable-description` | Disable generating PR description | No | `false` |
 | `disable-labels` | Disable generating PR labels | No | `false` |
-| `footer` | Custom footer text to append to PR descriptions | No | `""` |
+| `footer` | Custom footer text to append to PR descriptions | No | Default footer with link to action |
 
 ## Customization
 
