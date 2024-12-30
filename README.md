@@ -44,10 +44,8 @@ jobs:
 | `llm-model` | Model to use (e.g. `gpt-4o-mini` for OpenAI or `claude-3-sonnet-20240229` for Anthropic) | Yes | N/A |
 | `description-template` | Path to description template file | No | Default template |
 | `description-prompt` | Path to description prompt file | No | Default prompt |
-| `write-mode` | How to write descriptions (`pr` or `comment`) | No | `comment` |
-| `label-mode` | How to write labels (`add` or `set`) | No | `add` |
-| `disable-description` | Disable generating PR description | No | `false` |
-| `disable-labels` | Disable generating PR labels | No | `false` |
+| `write-mode` | Where to write descriptions (comma-separated list of: `title,comment,description` or `off` to disable) | No | `comment` |
+| `label-mode` | How to write labels (`add`, `set`, or `off`) | No | `add` |
 | `footer` | Footer text used to identify and update relgen comments (should not be empty) | No | Default footer with link to action |
 
 ## Customization
@@ -86,6 +84,7 @@ Then update your workflow:
     llm-key: ${{ secrets.OPENAI_API_KEY }} # or ANTHROPIC_API_KEY
     llm-provider: openai # or anthropic
     llm-model: gpt-4o-mini # or claude-3-sonnet-20240229 etc
+    write-mode: title,comment,description # Write to PR title, comment and description
     description-template: .github/templates/pr-description.md
     description-prompt: .github/prompts/pr-description.txt
 ```
