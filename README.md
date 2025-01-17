@@ -46,7 +46,8 @@ jobs:
 | `description-prompt` | Path to description prompt file | No | Default prompt |
 | `write-mode` | Where to write descriptions (comma-separated list of: `title,comment,description` or `off` to disable) | No | `comment` |
 | `label-mode` | How to write labels (`add`, `set`, or `off`) | No | `add` |
-| `footer` | Footer text used to identify and update relgen comments (should not be empty) | No | Default footer with link to action |
+| `footer` | Footer text used to identify relgen comments | No | Default footer with link to action |
+| `verbose` | Enable verbose logging | No | `false` |
 
 ## Customization
 
