@@ -66,4 +66,4 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github-token }}
       run: |
         relgen remote pr label "${{ github.event.pull_request.html_url }}" --provider ${{ inputs.llm-provider }} --model ${{ inputs.llm-model }} \
-          --write ${{ inputs.label-mode }} --llm-token ${{ inputs.llm-key }}
+          --write ${{ inputs.label-mode }} --llm-token ${{ inputs.llm-key }} ${{ inputs.verbose == 'true' && '-v' || '' }}
