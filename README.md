@@ -91,3 +91,48 @@ Then update your workflow:
     description-template: .github/templates/pr-description.md
     description-prompt: .github/prompts/pr-description.txt
 ```
+
+## Configuration File
+
+You can use a configuration file to manage your settings and add custom review rules. Create a `relgen.config.json` file:
+
+```json
+{
+  "llm": {
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "apiKey": "your-openai-api-key-here"
+  },
+  "integrations": {
+    "github": {
+      "token": "your-github-token-here"
+    },
+    "linear": {
+      "token": "your-linear-token-here"
+    }
+  },
+  "commands": {
+    "remote": {
+      "pr": {
+        "review": {
+          "rules": [{ "file": "examples/rules/injectable.md" }]
+        }
+      }
+    }
+  }
+}
+```
+
+Then reference it in your workflow:
+
+```yaml
+- uses: zlalvani/relgen-action@v1
+  with:
+    config: .github/relgen.config.json
+```
+
+The config file supports:
+- LLM provider settings
+- Integration tokens
+- Custom review rules
+- And more configuration options
