@@ -1,5 +1,5 @@
 name: 'Relgen Action'
-description: 'AI-powered PR descriptions and labels using relgen'
+description: 'AI-powered PR reviews, descriptions, and labels using relgen'
 branding:
   icon: 'edit'
   color: 'blue'
@@ -37,8 +37,14 @@ inputs:
   label-mode:
     description: 'How to write labels (add, set, or off)'
     default: 'add'
+  review-mode:
+    description: 'How to write reviews (add, or off)'
+    default: 'add'
   verbose:
     description: 'Enable verbose logging'
+    required: false
+  config:
+    description: 'Path to relgen config file'
     required: false
 
 runs:
@@ -57,8 +63,8 @@ runs:
         relgen remote pr describe "${{ github.event.pull_request.html_url }}" --provider ${{ inputs.llm-provider }} --model ${{ inputs.llm-model }} \
           --write ${{ inputs.write-mode }} \
           --llm-token ${{ inputs.llm-key }} \
-          ${{ inputs.footer != '' && format('--footer "{0}"', inputs.footer) || '' }} ${{ inputs.description-template != '' && format('--template {0}', inputs.description-template) || '' }} ${{ inputs.description-prompt != '' && format('--prompt {0}', inputs.description-prompt) || '' }} ${{ inputs.verbose == 'true' && '-v' || '' }}
-          
+          ${{ inputs.footer != '' && format('--footer "{0}"', inputs.footer) || '' }} ${{ inputs.description-template != '' && format('--template {0}', inputs.description-template) || '' }} ${{ inputs.description-prompt != '' && format('--prompt {0}', inputs.description-prompt) || '' }} ${{ inputs.verbose == 'true' && '-v' || '' }} ${{ inputs.config != '' && format('--config {0}', inputs.config) || '' }}          
+
     - name: Label PR
       if: inputs.label-mode != 'off'
       shell: bash
@@ -66,4 +72,13 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github-token }}
       run: |
         relgen remote pr label "${{ github.event.pull_request.html_url }}" --provider ${{ inputs.llm-provider }} --model ${{ inputs.llm-model }} \
-          --write ${{ inputs.label-mode }} --llm-token ${{ inputs.llm-key }} ${{ inputs.verbose == 'true' && '-v' || '' }}
+          --write ${{ inputs.label-mode }} --llm-token ${{ inputs.llm-key }} ${{ inputs.verbose == 'true' && '-v' || '' }} ${{ inputs.config != '' && format('--config {0}', inputs.config) || '' }}
+
+    - name: Review PR
+      if: inputs.review-mode != 'off'
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+      run: |
+        relgen remote pr review "${{ github.event.pull_request.html_url }}" --provider ${{ inputs.llm-provider }} --model ${{ inputs.llm-model }} --write \
+          --llm-token ${{ inputs.llm-key }} ${{ inputs.verbose == 'true' && '-v' || '' }} ${{ inputs.config != '' && format('--config {0}', inputs.config) || '' }} 
