@@ -98,19 +98,6 @@ You can use a configuration file to manage your settings and add custom review r
 
 ```json
 {
-  "llm": {
-    "provider": "openai",
-    "model": "gpt-4o-mini",
-    "apiKey": "your-openai-api-key-here"
-  },
-  "integrations": {
-    "github": {
-      "token": "your-github-token-here"
-    },
-    "linear": {
-      "token": "your-linear-token-here"
-    }
-  },
   "commands": {
     "remote": {
       "pr": {
