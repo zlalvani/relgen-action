@@ -130,9 +130,3 @@ Then reference it in your workflow:
   with:
     config: .github/.relgen.json
 ```
-
-The config file supports:
-- LLM provider settings
-- Integration tokens
-- Custom review rules
-- And more configuration options
