@@ -94,7 +94,7 @@ Then update your workflow:
 
 ## Configuration File
 
-You can use a configuration file to manage your settings and add custom review rules. Create a `relgen.config.json` file:
+You can use a configuration file to manage your settings and add custom review rules. Create a `.relgen.json` file:
 
 ```json
 {
@@ -115,7 +115,7 @@ You can use a configuration file to manage your settings and add custom review r
     "remote": {
       "pr": {
         "review": {
-          "rules": [{ "file": "examples/rules/injectable.md" }]
+          "rules": [{ "file": ".github/relgen/my-rule.md" }, "follow martin fowler's service layer pattern"]
         }
       }
     }
@@ -128,7 +128,7 @@ Then reference it in your workflow:
 ```yaml
 - uses: zlalvani/relgen-action@v1
   with:
-    config: .github/relgen.config.json
+    config: .github/.relgen.json
 ```
 
 The config file supports:
