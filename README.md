@@ -1,10 +1,10 @@
 # Relgen Action
 
-This action uses [relgen](https://github.com/zlalvani/relgen) to automatically generate descriptive comments for pull requests and intelligently label them using AI.
+This action uses [relgen](https://github.com/zlalvani/relgen) to automatically review, describe, and label pull requests using AI.
 
 ## Features
 
-- 🤖 AI-powered PR descriptions
+- 🤖 AI-powered PR reviews and descriptions
 - 🏷️ Intelligent PR labeling
 - ⚙️ Customizable templates and prompts
 - 🔄 Updates on PR changes
@@ -29,9 +29,9 @@ jobs:
       - uses: zlalvani/relgen-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          llm-key: ${{ secrets.OPENAI_API_KEY }} # or ANTHROPIC_API_KEY
-          llm-provider: openai # or anthropic
-          llm-model: gpt-4o-mini # or claude-3-sonnet-20240229 etc
+          llm-key: ${{ secrets.OPENAI_API_KEY }} # or ANTHROPIC_API_KEY or DEEPSEEK_API_KEY
+          llm-provider: openai # or anthropic or deepseek
+          llm-model: gpt-4o-mini # or claude-3-sonnet-20240229 or deepseek-chat etc
 ```
 
 ## Inputs
