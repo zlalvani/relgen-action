@@ -81,4 +81,4 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github-token }}
       run: |
         relgen remote pr review "${{ github.event.pull_request.html_url }}" --provider ${{ inputs.llm-provider }} --model ${{ inputs.llm-model }} --write \
-          --llm-token ${{ inputs.llm-key }} ${{ inputs.verbose == 'true' && '-v' || '' }} ${{ inputs.config != '' && format('--config {0}', inputs.config) || '' }} 
+          --llm-token ${{ inputs.llm-key }} ${{ inputs.verbose == 'true' && '-v' || '' }} ${{ inputs.config != '' && format('--config {0}', inputs.config) || '' }} ${{ inputs.footer != '' && format('--footer "{0}"', inputs.footer) || '' }}
